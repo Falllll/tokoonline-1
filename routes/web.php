@@ -15,7 +15,8 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', [Controller::class, 'home']);
-Route::get('/registrasi', [AdminController::class, 'registrasi']);
-Route::get('/login', [AdminController::class, 'login']);
-Route::get('/dashboard', [AdminController::class, 'dashboard']); 
+Route::get('/home', [Controller::class, 'home'])->name('home');
+Route::get('/registrasi', [AdminController::class, 'registrasi'])->name('registrasi');
+Route::get('/login', [AdminController::class, 'login'])->name('login');
+Route::post('/postlogin', [AdminController::class, 'postlogin'])->name('postlogin');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard'); 
