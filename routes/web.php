@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/home', [Controller::class, 'home'])->name('home');
 Route::get('/registrasi', [AdminController::class, 'registrasi'])->name('registrasi');
+Route::post('/daftar', [AdminController::class, 'daftar'])->name('daftar');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('/postlogin', [AdminController::class, 'postlogin'])->name('postlogin');
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard'); 
