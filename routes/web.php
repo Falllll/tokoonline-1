@@ -21,3 +21,6 @@ Route::post('/daftar', [AdminController::class, 'daftar'])->name('daftar');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('/postlogin', [AdminController::class, 'postlogin'])->name('postlogin');
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard'); 
+Route::get('/barang', [AdminController::class, 'barang'])->name('barang');
+Route::get('/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');
+Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
