@@ -6,7 +6,8 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use illuminate\Support\Str;
-use App\Models\barang;
+use App\Models\Barang;
+
 
 class AdminController extends Controller
 {
@@ -41,7 +42,6 @@ class AdminController extends Controller
     }
 
     public function dashboard () {
-        $barangs = barang::paginate(20);
         return view('Admin.dashboard', compact('barangs'));
     }
 
@@ -57,4 +57,5 @@ class AdminController extends Controller
     public function detail () {
         return view('admin.detail');
     }
+
 }

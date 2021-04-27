@@ -10,7 +10,7 @@ class barang extends Model
     use HasFactory;
 
     public function pesanan_detail (){
-        return $this->hasMany('App\Models\pesanandetail','barang_id','id');
+        return $this->hasMany('App\Models\Pesanandetail','barang_id','id');
     }
 
 }

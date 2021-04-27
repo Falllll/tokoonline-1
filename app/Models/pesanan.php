@@ -14,7 +14,7 @@ class pesanan extends Model
     }
 
     public function pesanan_detail (){
-        return $this->hasMany('App\Models\pesanandetail','pesanan_id','id');
+        return $this->hasMany('App\Models\Pesanandetail','pesanan_id','id');
     }
 
 }
