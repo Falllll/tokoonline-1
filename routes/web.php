@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PesanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,10 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
+Route::get('/pesan/{id}', [PesanController::class, 'pesan']);
+
+
+
 Route::get('/registrasi', [AdminController::class, 'registrasi'])->name('registrasi');
 Route::post('/daftar', [AdminController::class, 'daftar'])->name('daftar');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
