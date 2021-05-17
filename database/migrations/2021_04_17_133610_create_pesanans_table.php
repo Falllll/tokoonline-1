@@ -17,7 +17,8 @@ class CreatePesanansTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->date('tanggal');
-            $table->integer('jumlah');
+            $table->string('status');
+            $table->integer('jumlah_harga');
             $table->timestamps();
         });
     }

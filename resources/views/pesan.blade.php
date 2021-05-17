@@ -95,22 +95,18 @@
                                         <td>:</td>
                                         <td>{{$barang->keterangan}}</td>
                                     </tr>
-                                    <form action="" method="post">
+                                    
                                         <tr>
                                             <td>Jumlah Pesan</td>
                                             <td>:</td>
                                             <td>
-                                                <input type="text" name="jumlah_pesan" id="" class="form-control" required>
+                                                <form action="{{url('/pesan')}}/{{$barang->id}}" method="post">
+                                                @csrf
+                                                    <input type="text" name="jumlah_pesan" id="" class="form-control" required>
+                                                    <button type="submit" class="btn btn-primary mt-3"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
+                                                </form>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
-                                            </td>
-                                        </tr>
-                                    </form>
+                                        </tr>                                    
                                 </tbody>
                             </table>
                         </div>

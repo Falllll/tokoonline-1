@@ -18,7 +18,10 @@ use App\Http\Controllers\PesanController;
 */
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
+
 Route::get('/pesan/{id}', [PesanController::class, 'pesan']);
+Route::post('/pesan/{id}', [PesanController::class, 'kirim']);
+
 
 
 

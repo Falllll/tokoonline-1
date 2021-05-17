@@ -42,7 +42,7 @@ class AdminController extends Controller
     }
 
     public function dashboard () {
-        return view('Admin.dashboard', compact('barangs'));
+        return view('Admin.dashboard');
     }
 
 
