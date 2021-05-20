@@ -18,7 +18,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="{{url('/home')}}"><b>Oleh-oleh</b></a>
+    <a href="{{url('/')}}"><b>Oleh-oleh</b></a>
   </div>
 
   <div class="card">

@@ -68,6 +68,6 @@ class PesanController extends Controller
         $pesanan->jumlah_harga = $pesanan->jumlah_harga+$barang->harga*$request->jumlah_pesan;
         $pesanan->update();
 
-        return redirect ('/home');
+        return redirect ('/');
     }
 }
