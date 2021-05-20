@@ -25,7 +25,7 @@ class AdminController extends Controller
             'remember_token' => Str::random(60),
         ]);
 
-        return view('index');
+        return view('admin.login');
     }
 
     public function login () {
@@ -38,6 +38,12 @@ class AdminController extends Controller
             return redirect('/dashboard');
         }
 
+        return redirect('/login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
         return redirect('/login');
     }
 

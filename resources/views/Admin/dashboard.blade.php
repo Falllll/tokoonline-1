@@ -234,7 +234,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url ('/detail')}}" class="nav-link">
+            <a href="{{ route('logout') }}" class="nav-link">
               <i class="nav-icon fas fa-angle-left" aria-hidden="true"></i>
               <p>
                 Logout

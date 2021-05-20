@@ -45,7 +45,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar right -->
       <li class="nav-item">
-
+        <a href="{{ route('logout')}}">Log out</a>
       </li>
 
     </ul>

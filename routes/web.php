@@ -17,19 +17,27 @@ use App\Http\Controllers\PesanController;
 |
 */
 
-Route::get('/home', [HomeController::class, 'home'])->name('home');
-
-Route::get('/pesan/{id}', [PesanController::class, 'pesan']);
-Route::post('/pesan/{id}', [PesanController::class, 'kirim']);
-
-
-
 
 Route::get('/registrasi', [AdminController::class, 'registrasi'])->name('registrasi');
 Route::post('/daftar', [AdminController::class, 'daftar'])->name('daftar');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('/postlogin', [AdminController::class, 'postlogin'])->name('postlogin');
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard'); 
-Route::get('/barang', [AdminController::class, 'barang'])->name('barang');
-Route::get('/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');
-Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
+Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth','ceklevel:admin']], function(){
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard'); 
+    Route::get('/barang', [AdminController::class, 'barang'])->name('barang');
+    Route::get('/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');
+    Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
+
+});
+
+Route::group(['middleware' => ['auth','ceklevel:admin,pelanggan']], function(){
+    Route::get('/', [HomeController::class, 'home'])->name('home');
+    Route::get('/pesan/{id}', [PesanController::class, 'pesan']);
+    Route::post('/pesan/{id}', [PesanController::class, 'kirim']);
+
+});
+
+
+
