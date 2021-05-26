@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="/adminlte/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/adminlte/plugins/summernote/summernote-bs4.min.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -292,6 +293,7 @@
 </div>
 <!-- ./wrapper -->
 
+@include('sweet::alert')
 <!-- jQuery -->
 <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

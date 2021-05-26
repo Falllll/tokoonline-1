@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <style>
   </style>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
       <!-- Navbar -->
@@ -44,6 +45,21 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar right -->
+      <li class="nav-item">
+        <?php
+        $pesanan_keranjang = \App\Models\Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        if(!empty($pesanan_keranjang)){
+          $keranjang = \App\Models\Pesanandetail::where('pesanan_id', $pesanan_keranjang->id)->count();
+        }
+        ?>
+        <a href="{{ url('/checkout')}}"><i class="fa fa-shopping-cart"></i>
+          @if (!empty($keranjang))
+          <span class="badge badge-danger">{{ $keranjang }}</span></a>
+          @endif</a>
+      </li>
+        <li class="mr-2 ml-2">
+          |
+        </li>
       <li class="nav-item">
         <a href="{{ route('logout')}}">Log out</a>
       </li>
@@ -79,6 +95,6 @@
       @endforeach
     </div>
   </div>
-
+  @include('sweet::alert')
 </body>
 </html>

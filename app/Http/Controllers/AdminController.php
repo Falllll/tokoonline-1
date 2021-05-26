@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Alert;
 use Illuminate\Http\Request;
 use App\Models\User;
 use illuminate\Support\Str;

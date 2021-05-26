@@ -56,7 +56,7 @@
           @if (!empty($keranjang))
           <span class="badge badge-danger">{{ $keranjang }}</span></a>
           @endif
-          
+        </a>
       </li>
         <li class="mr-2 ml-2">
           |
@@ -78,57 +78,58 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{$barang->nama_barang}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">Checkout</li>
                 </ol>
               </nav>
         </div>
-        <div class="col-md-12 mt-2">
+        <div class="col md-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>{{$barang->nama_barang}}</h4>
-                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ url('img/barang')}}/{{ $barang->gambar}}" class="rounded mx-auto d-block" width="400" alt="">
-                        </div>
+                    <h3><i class="fa fa-shopping-cart"></i>Check Out</h3>
+                    @if (!empty($pesanan))
+                    <p align="right">Tanggal pesan : {{ $pesanan->tanggal}}</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Barang</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+                                <th>Total harga</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1; ?>
+                            @foreach ($pesanan_details as $pesanan_detail )
+                                <tr>
+                                    <td>{{ $no++}}</td>
+                                    <td>{{ $pesanan_detail->barang->nama_barang}}</td>
+                                    <td>{{ $pesanan_detail->jumlah}} Buah</td>
+                                    <td align="left">Rp. {{ number_format($pesanan_detail->barang->harga)}}</td>
+                                    <td align="left">Rp. {{ number_format($pesanan_detail->jumlah_harga)}} </td>
+                                    <td>
+                                        <form action="{{ url ('checkout')}}/{{$pesanan_detail->id}}" method="post">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                              <td colspan="4" align="right"><Strong>Total harga : </Strong></td>
+                              <td><strong>Rp. {{ number_format($pesanan->jumlah_harga)}}</strong></td>
+                              <td>
+                                <a href="{{ url('konfirmasi-check-out')}}" class="btn btn-success">
+                                  <i class="fa fa-shopping-cart"></i> Check out
+                                </a>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @endif
 
-                        <div class="col-md-6 mt-5">
-                            <h3>{{$barang->nama_barang}}</h3>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Harga</td>
-                                        <td>:</td>
-                                        <td>Rp. {{ number_format($barang->harga)}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stok</td>
-                                        <td>:</td>
-                                        <td>{{$barang->stok}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Keterangan</td>
-                                        <td>:</td>
-                                        <td>{{$barang->keterangan}}</td>
-                                    </tr>
-                                    
-                                        <tr>
-                                            <td>Jumlah Pesan</td>
-                                            <td>:</td>
-                                            <td>
-                                                <form action="{{url('/pesan')}}/{{$barang->id}}" method="post">
-                                                @csrf
-                                                    <input type="text" name="jumlah_pesan" id="" class="form-control" required>
-                                                    <button type="submit" class="btn btn-primary mt-3"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
-                                                </form>
-                                            </td>
-                                        </tr>                                    
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>

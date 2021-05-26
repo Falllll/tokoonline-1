@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth','ceklevel:admin,pelanggan']], function(){
     Route::get('/', [HomeController::class, 'home'])->name('home');
     Route::get('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::post('/pesan/{id}', [PesanController::class, 'kirim']);
+    Route::get('/checkout', [PesanController::class, 'checkout']);
+    Route::delete('/checkout/{id}', [PesanController::class, 'delete']);
+    Route::get('/konfirmasi-check-out', [PesanController::class, 'konfirmasi']);
 
 });
 
