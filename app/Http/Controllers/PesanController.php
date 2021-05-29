@@ -7,6 +7,7 @@ use App\Models\Pesanandetail;
 use App\Models\Barang;
 use Auth;
 use Alert;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -78,7 +79,10 @@ class PesanController extends Controller
         if(!empty($pesanan)){
             $pesanan_details = Pesanandetail::where('pesanan_id', $pesanan->id)->get();
         }
-        
+        if(empty($pesanan)){
+            alert()->error('Belum ada pesanan', 'Error');
+            return redirect('/');
+        }
 
         return view ('checkout', compact('pesanan', 'pesanan_details'));
     }
@@ -98,6 +102,18 @@ class PesanController extends Controller
     }
 
     public function konfirmasi(){
+
+        $user = User::where('id', Auth::user()->id)->first();
+
+        if(empty($user->alamat)){
+            alert()->error('Identitas harap dilengkapi', 'Error');
+            return redirect('/profile');
+        }
+        if(empty($user->no_hp)){
+            alert()->error('Identitas harap dilengkapi', 'Error');
+            return redirect('/profile');
+        }
+
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $pesanan_id = $pesanan->id;
         $pesanan->status = 1;

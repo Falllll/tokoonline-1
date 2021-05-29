@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PesanController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,8 @@ Route::group(['middleware' => ['auth','ceklevel:admin,pelanggan']], function(){
     Route::get('/checkout', [PesanController::class, 'checkout']);
     Route::delete('/checkout/{id}', [PesanController::class, 'delete']);
     Route::get('/konfirmasi-check-out', [PesanController::class, 'konfirmasi']);
-
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::post('/profile', [ProfileController::class, 'update']);
 });
 
 

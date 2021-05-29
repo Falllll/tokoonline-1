@@ -23,6 +23,8 @@ class AdminController extends Controller
             'level' => 'pelanggan', 
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
             'remember_token' => Str::random(60),
         ]);
 

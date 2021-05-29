@@ -61,6 +61,12 @@
         <li class="mr-2 ml-2">
           |
         </li>
+        <li class="nav-item">
+          <a href="{{url ('/profile')}}">Profile</a>
+        </li>
+        <li class="mr-2 ml-2">
+          |
+        </li>
       <li class="nav-item">
         <a href="{{ route('logout')}}">Log out</a>
       </li>
@@ -112,7 +118,7 @@
                                         <form action="{{ url ('checkout')}}/{{$pesanan_detail->id}}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('anda yakin ingin menghapus data?');"><i class="fa fa-trash"></i> Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -121,7 +127,7 @@
                               <td colspan="4" align="right"><Strong>Total harga : </Strong></td>
                               <td><strong>Rp. {{ number_format($pesanan->jumlah_harga)}}</strong></td>
                               <td>
-                                <a href="{{ url('konfirmasi-check-out')}}" class="btn btn-success">
+                                <a href="{{ url('konfirmasi-check-out')}}" class="btn btn-success" onclick="return confirm('anda yakin ingin mengcheck out belanjaan?');">
                                   <i class="fa fa-shopping-cart"></i> Check out
                                 </a>
                               </td>
