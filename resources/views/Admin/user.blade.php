@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard | Detail Pesanan</title>
+  <title>Dashboard | Data Pengguna</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -152,7 +152,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url ('/dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Pesanan</li>
+              <li class="breadcrumb-item active">Pengguna</li>
             </ol>
           </div>
         </div>
@@ -166,7 +166,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Detail pesanan pembeli</h3>
+                <h3 class="card-title">Data pengguna aplikasi</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -174,30 +174,23 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>ID Barang</th>
-                    <th>ID Pesanan</th>
-                    <th>Jumlah Barang</th>
-                    <th>Jumlah Harga</th>
-                    <th>Aksi</th>
+                    <th>Nama</th>
+                    <th>Level Pengguna</th>
+                    <th>Email</th>
+                    <th>No HP</th>
+                    <th>Alamat</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php $no = 1; ?>
-                    @foreach ($pesanandetails as $pesanandetail)
+                    @foreach ($users as $user)
                       <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$pesanandetail->barang_id}}</td>
-                        <td>{{$pesanandetail->pesanan_id}}</td>
-                        <td>{{$pesanandetail->jumlah}}</td>
-                        <td>Rp. {{ number_format($pesanandetail->jumlah_harga)}}</td>
-                        <td>
-                          <form action="/detail/{{$pesanandetail->id}}" method="post">
-                            @method('DELETE')
-                            @csrf
-                          <input type="submit" class="btn btn-danger" value="Hapus" onclick="return confirm('anda yakin ingin menghapus data?');">
-                      
-                        </form>
-                      </td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->level}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->no_hp}}</td>
+                        <td>{{$user->alamat}}</td>
                       </tr>
                     @endforeach
                   

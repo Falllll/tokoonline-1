@@ -31,7 +31,15 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function(){
     Route::get('/barang', [AdminController::class, 'barang'])->name('barang');
     Route::get('/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');
     Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
-
+    Route::get('/create', [AdminController::class, 'create']);
+    Route::post('/create', [AdminController::class, 'store']);
+    Route::get('/edit/{id}', [AdminController::class, 'edit']);
+    Route::put('/barang/{id}', [AdminController::class, 'update']);
+    Route::delete('/barang/{id}', [AdminController::class, 'delete']);
+    Route::delete('/detail/{id}', [AdminController::class, 'deletedetail']);
+    Route::delete('/pesanan/{id}', [AdminController::class, 'deletepesanan']);
+    Route::get('/user', [AdminController::class, 'user']);
+    // Route::delete('/user/{id}', [AdminController::class, 'deleteuser']);
 });
 
 Route::group(['middleware' => ['auth','ceklevel:admin,pelanggan']], function(){
