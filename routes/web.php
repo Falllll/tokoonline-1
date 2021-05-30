@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['auth','ceklevel:admin,pelanggan']], function(){
     Route::get('/konfirmasi-check-out', [PesanController::class, 'konfirmasi']);
     Route::get('/profile', [ProfileController::class, 'index']);
     Route::post('/profile', [ProfileController::class, 'update']);
+    Route::get('/history', [HistoryController::class, 'index']);
+    Route::get('/history/{id}', [HistoryController::class, 'detail']);
 });
 
 

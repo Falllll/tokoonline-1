@@ -55,7 +55,8 @@
         <a href="{{ url('/checkout')}}"><i class="fa fa-shopping-cart"></i>
           @if (!empty($keranjang))
           <span class="badge badge-danger">{{ $keranjang }}</span></a>
-          @endif</a>
+          @endif
+        </a>
       </li>
         <li class="mr-2 ml-2">
           |
@@ -81,32 +82,61 @@
   <!-- /.navbar -->
 
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12 mb-5">
-        <img src="{{('/img/logo.png')}}" class="rounded mx-auto d-block" style="width: 200px" alt="">
-      </div>
-      @foreach ($barangs as $barang)
-        <div class="col-md-4">
-          <div class="card">
-            <img src="{{ url ('img/barang')}}/{{$barang->gambar}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{$barang->nama_barang}}</h5>
-              <p class="card-text">
-                <strong>Harga : </strong>
-                Rp. {{ number_format($barang->harga)}} <br>
-                <Strong>Stok : </Strong>
-                {{$barang->stok}} <br>
-                <hr>
-                <Strong>Keterangan : </Strong>
-                {{$barang->keterangan}}
-              </p>
-              <a href="{{url('pesan')}}/{{$barang->id}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
-            </div>
-          </div>
+    <div class="row">
+        <div class="col-md-12 mt-3">
+            <a href="{{url('/')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali </a>
         </div>
-      @endforeach
+        <div class="col-md-12 mt-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Riwayat Pemesanan</li>
+                </ol>
+              </nav>
+        </div>
+        <div class="col md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3><i class="fa fa-history"></i>Riwayat Pemesanan</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Status</th>
+                                <th>Jumlah Harga</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1; ?>
+                            @foreach ($pesanans as $pesanan)
+                            <tr>
+                                <td>{{ $no++}}</td>
+                                <td>{{ $pesanan->tanggal}}</td>
+                                <td>
+                                    @if ($pesanan->status == 1)
+                                    Sudah pesan & belum dibayar
+                                    @else
+                                    Sudah dibayar
+                                    @endif
+                                </td>
+                                <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode)}}</td>
+                                <td>
+                                    <a href="{{ url('/history')}}/{{ $pesanan->id}}" class="btn btn-primary"><i class="fa fa-info"></i>Detail</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
     </div>
   </div>
-  @include('sweet::alert')
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@include('sweet::alert')
 </body>
 </html>

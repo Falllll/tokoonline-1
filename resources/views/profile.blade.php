@@ -66,6 +66,12 @@
         <li class="mr-2 ml-2">
           |
         </li>
+        <li class="nav-item">
+          <a href="{{ url ('/history')}}">Riwayat pemesanan</a>
+        </li>
+        <li class="mr-2 ml-2">
+          |
+        </li>
       <li class="nav-item">
         <a href="{{ route('logout')}}">Log out</a>
       </li>

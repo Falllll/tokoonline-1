@@ -40,6 +40,7 @@ class PesanController extends Controller
             $pesanan->tanggal = $tanggal;
             $pesanan->status = 0;
             $pesanan->jumlah_harga = 0;
+            $pesanan->kode = mt_rand(100, 999);
             $pesanan->save();
         }
         // Simpan ke table pesanandetails
@@ -125,7 +126,7 @@ class PesanController extends Controller
             $barang->stok = $barang->stok-$pesanan_detail->jumlah;
             $barang->update();
         }
-        alert()->success('Pesanan berhasil dicheck out', 'Berhasil');
-        return redirect('/');
+        alert()->success('Pesanan berhasil dicheck out silahkan lanjutkan proses pembayaran', 'Berhasil');
+        return redirect('/history/'.$pesanan_id);
     }
 }
